@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naccords（ナコーズ）｜仲人向け先行登録</title>
+<title>Naccords（ナコーズ）｜仲人向け先行登録ページ</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,17 +33,13 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
 .nav-cta:hover { background: var(--primary-dark); }
 
 /* Hero */
-.hero { min-height: 100vh; background: var(--beige); display: flex; align-items: center; padding: 100px 40px 80px; position: relative; overflow: hidden; }
-.hero-bg-ph { position: absolute; inset: 0; background: var(--beige-dark); overflow: hidden; }
-.hero-bg-ph::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(138,134,128,0.06) 10px, rgba(138,134,128,0.06) 20px); }
-.hero-bg-ph::after { content: '📷  ここに背景画像が入ります  推奨：1920 × 1080px'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.05em; }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(249,244,238,0.92) 0%, rgba(249,244,238,0.75) 60%, rgba(249,244,238,0.4) 100%); z-index: 1; }
-.hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; text-align: left; }
-.hero-badge { display: inline-block; background: var(--primary-bg); color: var(--primary-dark); border: 1.5px solid var(--primary-light); border-radius: 20px; padding: 5px 18px; font-size: 13px; font-weight: 500; margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
-.hero-catch { font-size: clamp(28px, 4.5vw, 48px); font-weight: 700; line-height: 1.5; color: var(--text); margin-bottom: 20px; animation: fadeUp 0.6s 0.1s ease both; }
-.hero-catch em { font-style: normal; color: var(--primary-dark); }
-.hero-sub { font-size: 15px; font-weight: 400; color: var(--text-muted); line-height: 1.9; margin-bottom: 36px; animation: fadeUp 0.6s 0.2s ease both; }
-.hero-cta-group { display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+.hero { background: var(--white); padding: 0 0 80px 0; }
+.hero-banner { width: 100%; background: var(--beige-dark); min-height: 200px; overflow: hidden; position: relative; margin-top: 64px; }
+.hero-banner::after { content: '📷  ここにバナー画像が入ります  推奨：1920 × 800px'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); font-family: 'Noto Sans JP', sans-serif; background: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(138,134,128,0.06) 10px, rgba(138,134,128,0.06) 20px); }
+.hero-banner-img { width: 100%; height: auto; display: block; object-fit: cover; position: relative; z-index: 1; }
+.hero-inner { max-width: 900px; margin: 0 auto; padding: 48px 40px 64px; text-align: left; width: 100%; box-sizing: border-box; }
+.hero-sub { font-size: 15px; font-weight: 400; color: var(--text-muted); line-height: 1.9; margin-bottom: 36px; }
+.hero-cta-group { display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; }
 .btn-hero { background: var(--primary); color: #fff; border: none; border-radius: 10px; padding: 14px 36px; font-size: 15px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.1s; display: inline-block; }
 .btn-hero:hover { background: var(--primary-dark); transform: translateY(-1px); }
 .btn-hero-sub { background: transparent; color: var(--text-muted); border: 1px solid var(--border); border-radius: 10px; padding: 14px 28px; font-size: 15px; font-weight: 400; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s; display: inline-block; }
@@ -51,8 +47,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
 .hero-note { font-size: 12px; color: var(--text-muted); margin-top: 20px; animation: fadeUp 0.6s 0.4s ease both; }
 
 /* 共通 */
-section { padding: 80px 40px; }
-.section-inner { max-width: 900px; margin: 0 auto; }
+section { padding: 80px 0; }
+.section-inner { max-width: 900px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; width: 100%; }
 .section-tag { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 700; color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
 .section-title { font-size: clamp(22px, 3vw, 30px); font-weight: 700; line-height: 1.4; margin-bottom: 14px; }
 .section-lead { font-size: 15px; font-weight: 400; color: var(--text-muted); line-height: 1.9; margin-bottom: 40px; }
@@ -64,15 +60,21 @@ section { padding: 80px 40px; }
 .img-ph-txt { position: relative; z-index: 1; text-align: center; line-height: 1.7; }
 .img-ph-tag { position: relative; z-index: 1; background: rgba(255,255,255,0.85); border: 1px solid var(--primary-light); border-radius: 20px; padding: 2px 12px; font-size: 11px; color: var(--primary-dark); font-weight: 500; }
 
-/* 悩み */
+/* 悩みセクション：左右交互 */
 .pain { background: var(--white); }
-.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-.pain-card { background: var(--beige); border-radius: 16px; overflow: hidden; border-left: 4px solid var(--primary-light); }
-.pain-card .img-ph { width: 100%; aspect-ratio: 16/9; border-radius: 0; border: none; border-bottom: 1px dashed var(--border); }
-.pain-card-body { padding: 20px 22px 24px; }
-.pain-card .icon { font-size: 22px; margin-bottom: 10px; }
-.pain-card h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
-.pain-card p { font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.8; }
+.pain-list { display: flex; flex-direction: column; gap: 56px; }
+.pain-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.pain-img { aspect-ratio: 3/2; border-radius: 16px; min-height: 180px; }
+.pain-text .icon { font-size: 24px; margin-bottom: 12px; }
+.pain-text h3 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.4; }
+.pain-text p { font-size: 15px; font-weight: 400; color: var(--text-muted); line-height: 1.9; }
+@media(max-width:640px){
+  .pain-list { gap: 40px; }
+  .pain-row { grid-template-columns: 1fr; gap: 20px; }
+  /* スマホは全行、画像を上・テキストを下に統一 */
+  .pain-row .pain-img { order: 1; }
+  .pain-row .pain-text { order: 2; }
+}
 
 /* About */
 .about { background: var(--beige); }
@@ -80,6 +82,38 @@ section { padding: 80px 40px; }
 .about-lead { font-size: 15px; font-weight: 400; line-height: 1.9; margin-bottom: 32px; color: var(--text-muted); }
 .about-lead strong { color: var(--primary-dark); font-weight: 700; }
 .about-flow-heading { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+
+/* About拡張 */
+.about-block { margin-bottom: 32px; }
+.about-block-heading { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+.about-wide-img { width: 100%; aspect-ratio: 2/1; border-radius: 16px; margin-bottom: 24px; min-height: 200px; }
+.about-feature-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media(max-width:640px){ .about-feature-2col { grid-template-columns: 1fr; } }
+.about-feature-col strong { display: block; font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+.about-feature-col p { font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.8; }
+.about-recommend { background: var(--primary-bg); border-radius: 14px; padding: 24px 28px; margin-top: 32px; border-left: 4px solid var(--primary); }
+.about-recommend-body { font-size: 15px; font-weight: 400; color: var(--text); line-height: 1.9; }
+.about-recommend-body strong { color: var(--primary-dark); font-weight: 700; }
+
+/* About 3カラム */
+.about-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px; }
+@media(max-width:680px){ .about-3col { grid-template-columns: 1fr; } }
+.about-3item { display: flex; flex-direction: column; }
+.about-3img { width: 100%; aspect-ratio: 4/3; border-radius: 12px; margin-bottom: 16px; min-height: 140px; }
+.about-3title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+.about-3body { font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.8; }
+
+/* 先行掲載CTA */
+.early-cta { margin-top: 48px; }
+
+/* 先行掲載 */
+.early { background: var(--white); }
+.early-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 8px; }
+.early-card { background: var(--beige); border-radius: 16px; padding: 28px 24px; border: 1px solid var(--beige-dark); }
+.early-icon { font-size: 28px; margin-bottom: 16px; }
+.early-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
+.early-body { font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.85; margin-bottom: 16px; }
+.early-tag { display: inline-block; background: var(--primary-bg); color: var(--primary-dark); border-radius: 6px; padding: 4px 14px; font-size: 12px; font-weight: 500; }
 
 /* ユーザーフロー */
 .user-flow { display: flex; flex-direction: column; }
@@ -167,8 +201,9 @@ footer .copy { font-size: 12px; color: var(--border); }
 /* レスポンシブ */
 @media (max-width: 680px) {
   nav { padding: 0 20px; }
-  section { padding: 64px 20px; }
-  .hero { padding: 100px 20px 64px; }
+  section { padding: 64px 0; }
+  .section-inner { padding: 0 20px; }
+  .hero { padding: 0; }
   .about-box, .pricing-box, .form-card { padding: 24px 20px; }
   .feature-item { flex-direction: column; gap: 8px; }
   .feature-num { font-size: 32px; min-width: auto; }
@@ -193,23 +228,18 @@ footer .copy { font-size: 12px; color: var(--border); }
 
 <!-- Hero -->
 <section class="hero">
-  <!-- ▼ 背景画像エリア：画像実装時は <img> タグに差し替え、object-fit:cover で全面表示 -->
-  <div class="hero-bg-ph"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-inner">
-    <div class="hero-badge">🎉 先行登録受付中・掲載料永久無料</div>
-    <h1 class="hero-catch">
-      本当に親身な仲人ほど、<br><em>もっと見つかっていい。</em>
-    </h1>
+  <!-- ▼ バナー画像エリア：src="" にバナー画像パスを入れてください 推奨：1920×800px -->
+  <div class="hero-banner">
+    <img src="" alt="Naccords" class="hero-banner-img" onerror="this.parentElement.style.background='var(--beige-dark)';">
+  </div>
+  <div class="section-inner">
     <p class="hero-sub">
-      Naccordsは、仲人の実力をレビューと実績で正直に見せる結婚相談所マッチングプラットフォームです。掲載は完全無料。面談が成立したときだけ、少額の成果報酬をいただきます。
-      掲載は完全無料。面談が成立したときだけ、少額の成果報酬をいただきます。
+      <br>Naccordsは、仲人の人柄・強み・サポートの違いを見える化して、婚活ユーザーが自分に合う仲人を検索・比較できるプラットフォームです。<br>掲載は完全無料。<br>初回面談の予約1件につき、3,300円の成果報酬をいただきます。
     </p>
     <div class="hero-cta-group">
-      <a href="#register" class="btn-hero">無料で先行登録する</a>
-      <a href="#about" class="btn-hero-sub">サービスを詳しく見る</a>
+      <a href="#register" class="btn-hero">先行掲載のご登録はこちら →</a>
     </div>
-    <p class="hero-note">※ 審査後にプロフィールページが公開されます。いつでも退会できます。</p>
+    <p class="hero-note"></p>
   </div>
 </section>
 
@@ -217,35 +247,16 @@ footer .copy { font-size: 12px; color: var(--border); }
 <section class="pain">
   <div class="section-inner">
     <div class="section-tag reveal">Pain</div>
-    <h2 class="section-title reveal">こんな悩み、ありませんか？</h2>
-    <p class="section-lead reveal">集客に悩む仲人さんの声から、Naccordsは生まれました。</p>
-    <div class="pain-grid">
-      <div class="pain-card reveal">
-        <!-- ▼ 画像：SNSを見ている仲人のイメージ -->
-        <div class="img-ph"><span class="img-ph-ico">📷</span><span class="img-ph-txt">SNSを見ている仲人のイメージ</span><span class="img-ph-tag">推奨：640 × 360px</span></div>
-        <div class="pain-card-body">
-          <div class="icon">📣</div>
-          <h3>SNSだけでは限界を感じる</h3>
-          <p>InstagramやXで発信しても、フォロワーがなかなか増えない。どこで会員候補と出会えるかわからない。</p>
-        </div>
+    <h2 class="section-title reveal">こんなお悩み、ありませんか？</h2>
+    <div class="pain-row reveal">
+      <!-- ▼ 画像：仲人がスマホを見ているイメージ 推奨：600×400px -->
+      <div class="pain-img img-ph">
+        <span class="img-ph-ico">📷</span>
+        <span class="img-ph-txt">仲人がスマホを見ているイメージ</span>
+        <span class="img-ph-tag">推奨：600 × 400px</span>
       </div>
-      <div class="pain-card reveal">
-        <!-- ▼ 画像：費用・コストを気にしているイメージ -->
-        <div class="img-ph"><span class="img-ph-ico">📷</span><span class="img-ph-txt">費用・コストを気にしているイメージ</span><span class="img-ph-tag">推奨：640 × 360px</span></div>
-        <div class="pain-card-body">
-          <div class="icon">💸</div>
-          <h3>集客にお金をかけたくない</h3>
-          <p>面談のたびに高額な手数料がかかる。まだ会員数も少ないのに、固定費が重くのしかかる。</p>
-        </div>
-      </div>
-      <div class="pain-card reveal">
-        <!-- ▼ 画像：成婚実績・ポートフォリオのイメージ -->
-        <div class="img-ph"><span class="img-ph-ico">📷</span><span class="img-ph-txt">成婚実績・ポートフォリオのイメージ</span><span class="img-ph-tag">推奨：640 × 360px</span></div>
-        <div class="pain-card-body">
-          <div class="icon">🔍</div>
-          <h3>実力を見てもらえる場所がない</h3>
-          <p>成婚させた実績も、会員からの感謝の声も、外から見えない。知名度より実力で選ばれたい。</p>
-        </div>
+      <div class="pain-text">
+        <p>InstagramやXで発信しても、婚活ユーザーに届かない。<br>丁寧に支援していても、良さが伝わらずうまく集客できない。</p>
       </div>
     </div>
   </div>
@@ -256,79 +267,82 @@ footer .copy { font-size: 12px; color: var(--border); }
   <div class="section-inner">
     <div class="section-tag reveal">About</div>
     <h2 class="section-title reveal">Naccordsとは</h2>
-    <p class="about-lead reveal">
-      婚活ユーザーが<strong>仲人を検索・比較・面談予約</strong>できるプラットフォームです。プロフィールと成婚事例を登録するだけで、Naccords経由で面談の申込みが届きます。集客力ではなく、仲人としての<strong>実力で仕事が取れる</strong>設計です。
-    </p>
-    <div class="about-box reveal">
-      <p class="about-flow-heading">婚活ユーザーによる利用の流れ</p>
-      <div class="user-flow">
-        <div class="user-flow-step">
-          <div class="user-flow-left">
-            <div class="user-flow-icon">🔍</div>
-          </div>
-          <div class="user-flow-body">
-            <strong>結婚相談所・仲人を検索する</strong>
-            <p>エリア・料金・サポートスタイルで絞り込み。あなたのプロフィールが自然に目に触れます。</p>
-          </div>
+    <p class="about-lead reveal">婚活ユーザーが<strong>仲人を検索・比較・面談予約</strong>できるプラットフォームです。<br>仲人ごとの違いや強みが、婚活ユーザーに直感的に伝わる掲載設計です。</p>
+    <div class="about-3col">
+      <div class="about-3item reveal">
+        <!-- ▼ 画像：検索ページのイメージ 推奨：600×400px -->
+        <div class="img-ph about-3img">
+          <span class="img-ph-ico">📷</span>
+          <span class="img-ph-txt">検索ページのイメージ</span>
+          <span class="img-ph-tag">推奨：600 × 400px</span>
         </div>
-        <div class="user-flow-step">
-          <div class="user-flow-left">
-            <div class="user-flow-icon">📋</div>
-          </div>
-          <div class="user-flow-body">
-            <strong>サービス内容・料金・レビューで比較する</strong>
-            <p>実績・成婚事例・レビューを見て「この人に相談したい」と感じた仲人を選びます。広告費より、実力が評価される仕組みです。</p>
-          </div>
-        </div>
-        <div class="user-flow-step">
-          <div class="user-flow-left">
-            <div class="user-flow-icon">📅</div>
-          </div>
-          <div class="user-flow-body">
-            <strong>初回面談を予約する</strong>
-            <p>空き枠を選んでそのまま予約。日程調整のやり取りは不要で、確定通知があなたにメールで届きます。</p>
-          </div>
-        </div>
+        <h3 class="about-3title">エリア・料金・スタイルで仲人を検索</h3>
+        <p class="about-3body">婚活ユーザーが条件で絞り込みながら、あなたのプロフィールを自然に見つけます。</p>
       </div>
-      <div class="about-result">
-        あなたは空き枠を設定するだけ。集客・日程調整・リマインドはNaccordsが自動で行います。
-        <span>掲載料¥0・現在は面談成果報酬も¥0でご利用いただけます。</span>
+      <div class="about-3item reveal">
+        <!-- ▼ 画像：仲人プロフィールページのイメージ 推奨：600×400px -->
+        <div class="img-ph about-3img">
+          <span class="img-ph-ico">📷</span>
+          <span class="img-ph-txt">仲人プロフィールページのイメージ</span>
+          <span class="img-ph-tag">推奨：600 × 400px</span>
+        </div>
+        <h3 class="about-3title">あなたの「人柄」と「支援の違い」を伝える</h3>
+        <p class="about-3body">料金表だけでなく、得意な会員層・サポート方針・レビューも含めて、あなたの強みを見える化します。</p>
       </div>
+      <div class="about-3item reveal">
+        <!-- ▼ 画像：予約完了画面のイメージ 推奨：600×400px -->
+        <div class="img-ph about-3img">
+          <span class="img-ph-ico">📷</span>
+          <span class="img-ph-txt">予約完了画面のイメージ</span>
+          <span class="img-ph-tag">推奨：600 × 400px</span>
+        </div>
+        <h3 class="about-3title">面談予約まで、全部オンラインで完結</h3>
+        <p class="about-3body">スケジュールを一度登録すれば、婚活ユーザーが空き枠を選んで予約するだけ。日程調整のやり取りが不要になります。</p>
+      </div>
+    </div>
+
+    <!-- こんな仲人におすすめ -->
+    <div class="about-recommend reveal">
+      <p class="about-block-heading">こんな仲人の方におすすめです</p>
+      <p class="about-recommend-body">価格競争ではなく、<strong>相性や支援の質で選ばれたい</strong>方に向いています。知名度がなくても、実力と実績で新規会員を獲得できる仕組みを提供します。</p>
     </div>
   </div>
 </section>
 
-<!-- 特徴 -->
-<section class="features" id="features">
+<!-- 先行掲載のご案内 -->
+<section class="early" id="early">
   <div class="section-inner">
-    <div class="section-tag reveal">Features</div>
-    <h2 class="section-title reveal">選ばれる3つの理由</h2>
-    <p class="section-lead reveal">集客力ではなく、仲人としての実力で仕事が取れる設計です。</p>
+    <div class="section-tag reveal">Early Registration</div>
+    <h2 class="section-title reveal">先行掲載のご案内</h2>
+    <p class="section-lead reveal">今だけ受けられる3つのメリット</p>
     <div class="feature-list">
       <div class="feature-item reveal">
         <div class="feature-num">01</div>
         <div class="feature-body">
-          <h3>掲載完全無料。成果が出たときだけ払う。</h3>
-          <p>月額・初期費用はゼロ。費用が発生するのは面談が成立したときだけ、税込3,300円の成果報酬のみです。会員が増えるまでの初期フェーズでも、リスクなく始められます。</p>
-          <span class="feature-tag">面談成立時のみ 税込3,300円</span>
+          <h3>面談手数料が完全無料</h3>
+          <p>通常は、初回面談成立時に税込3,300円の成果報酬をいただきますが、先行掲載期間中は完全無料です。何件面談が成立しても費用は一切かかりません。</p>
+          <span class="feature-tag">通常3,300円 → 今なら0円</span>
         </div>
       </div>
       <div class="feature-item reveal">
         <div class="feature-num">02</div>
         <div class="feature-body">
-          <h3>成婚事例が、最強のポートフォリオになる。</h3>
-          <p>どんな会員をどうサポートして成婚に導いたか——そのストーリーを「成婚事例記事」として掲載できます。実績が積み上がるほど検索で見つかりやすくなり、信頼が高まります。</p>
-          <span class="feature-tag">レビュー・実績が増えるほど露出UP</span>
+          <h3>早期レビューが長期的な優位性に</h3>
+          <p>レビュー数が多い仲人ほど、婚活ユーザーに選ばれやすくなります。<br>サービス立ち上げ初期から掲載しレビューを積み上げておくことが、長期的な集客優位性につながります。</p>
+          <span class="feature-tag">先行登録・初期掲載が有利！</span>
         </div>
       </div>
       <div class="feature-item reveal">
         <div class="feature-num">03</div>
         <div class="feature-body">
-          <h3>面談予約まで、全部オンラインで完結。</h3>
-          <p>スケジュールを一度登録すれば、婚活ユーザーが空き枠を選んで予約するだけ。日程調整のやり取りが不要になり、面談前の事前アンケートも自動で送れます。</p>
-          <span class="feature-tag">24時間予約受付・自動確定</span>
+          <h3>運営によるプロフィール作成サポート</h3>
+          <p>先行掲載者限定で、運営が直接プロフィール作成をサポートします。<br>何を書けばいいかわからない方でも、プロフィールを一緒に仕上げます。</p>
+          <span class="feature-tag">充実のサポートで安心</span>
         </div>
       </div>
+    </div>
+    <div class="early-cta reveal">
+      <a href="#register" class="btn-hero">先行登録はこちら →</a>
     </div>
   </div>
 </section>
@@ -343,14 +357,13 @@ footer .copy { font-size: 12px; color: var(--border); }
       <div class="pricing-sub">月額掲載料・固定費・初期費用すべて無料</div>
       <hr class="pricing-divider">
       <div class="pricing-fee">
-        面談が成立したときの成果報酬：
+        面談が成立したときの成果報酬：<br>
         <span style="text-decoration:line-through;color:var(--text-muted);margin-right:8px;">税込3,300円</span>
         <strong style="color:var(--primary-dark);font-size:18px;">→ 今なら¥0</strong><br>
         <span style="font-size:13px;color:var(--text-muted);font-weight:300;">先行登録期間中は成果報酬も完全無料。費用は一切かかりません。</span>
       </div>
       <div class="pricing-note">
-        ※ 有料化（成果報酬3,300円/件）の際は事前にご連絡のうえ開始します。<br>
-        ※ 先行登録者には特別割引を予定しています。
+      
       </div>
     </div>
   </div>
@@ -390,23 +403,23 @@ footer .copy { font-size: 12px; color: var(--border); }
     <div class="faq-list reveal">
       <div class="faq-item">
         <div class="faq-q">本当に無料ですか？隠れた費用はありませんか？</div>
-        <div class="faq-a">はい、月額・初期費用・掲載料は一切かかりません。費用が発生するのは面談が成立したときの成果報酬（税込3,300円）のみです。先行登録期間中は成果報酬も無料でご利用いただけます。</div>
+        <div class="faq-a">はい、月額・初期費用・掲載料は一切かかりません。<br>費用が発生するのは初回面談が成立したときの成果報酬（税込3,300円）のみです。<br>先行登録期間中は初回面談予約の成果報酬も無料でご利用いただけます。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">どんな仲人が掲載できますか？</div>
-        <div class="faq-a">IBJ・TMS・JBA・BIUなどの連盟加盟・非加盟を問わず、個人・法人の仲人・結婚相談所が対象です。審査後にプロフィールを公開します。身分証の提出は現時点では任意です（提出すると「認証済みバッジ」が付与されます）。</div>
+        <div class="faq-a">IBJ・TMS・JBA・BIUなどの連盟加盟・非加盟を問わず、個人・法人の仲人・結婚相談所が対象です。<br>審査後にプロフィールを公開します。<br>身分証の提出は現時点では任意です（提出すると「認証済みバッジ」が付与されます）。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">既存の集客（SNS・IBJなど）と並行して使えますか？</div>
-        <div class="faq-a">もちろんです。Naccordsは既存の集客活動を置き換えるものではなく、新しい集客チャネルとして追加でご活用いただけます。</div>
+        <div class="faq-a">もちろん可能です。<br>Naccordsは既存の集客活動を置き換えるものではなく、新しい集客チャネルとして追加でご活用いただけます。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">いつでも退会できますか？</div>
-        <div class="faq-a">はい、管理画面からいつでも掲載を停止・退会できます。違約金や解約手数料はかかりません。</div>
+        <div class="faq-a">はい、管理画面からいつでも掲載を停止・退会できます。<br>違約金や解約手数料はかかりません。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">婚活ユーザーの個人情報は守られますか？</div>
-        <div class="faq-a">ユーザーはニックネームで登録し、メールアドレスは仲人には開示されません。ユーザーが許可した情報のみが仲人に見える設計です。</div>
+        <div class="faq-a">ユーザーはニックネームで登録し、メールアドレスは仲人には開示されません。<br>ユーザーが許可した情報のみが仲人に見える設計です。</div>
       </div>
     </div>
   </div>
@@ -415,35 +428,19 @@ footer .copy { font-size: 12px; color: var(--border); }
 <!-- CTAフォーム -->
 <section class="cta-section" id="register">
   <div class="section-inner cta-inner">
-    <div class="section-tag reveal" style="color:var(--primary-dark);">先行登録</div>
-    <h2 class="cta-title reveal">まず、登録してみてください。費用はかかりません。</h2>
-    <p class="cta-sub reveal">審査後にプロフィール作成のご案内をお送りします。</p>
+    <div class="section-tag reveal" style="color:var(--primary-dark);">先行掲載</div>
+    <h2 class="cta-title reveal">先行掲載のご登録</h2>
+    <p class="cta-sub reveal">先行登録を希望される方は、以下よりお名前とメールアドレスをご登録ください。<br>順次先行登録に関するご案内をお送りします。</p>
     <div class="form-card reveal">
       <div class="form-group">
         <label class="form-label">お名前・相談所名 <span>必須</span></label>
-        <input class="form-input" type="text" placeholder="田中 美咲（ハピネス相談所）">
+        <input class="form-input" type="text" id="f-name" placeholder="田中 美咲（ハピネス相談所）">
       </div>
       <div class="form-group">
         <label class="form-label">メールアドレス <span>必須</span></label>
-        <input class="form-input" type="email" placeholder="example@email.com">
+        <input class="form-input" type="email" id="f-email" placeholder="example@email.com">
       </div>
-      <div class="form-group">
-        <label class="form-label">所属連盟</label>
-        <select class="form-select">
-          <option value="">選択してください</option>
-          <option>IBJ</option>
-          <option>TMS</option>
-          <option>JBA</option>
-          <option>BIU</option>
-          <option>なし（独立系）</option>
-          <option>その他</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">活動エリア（都道府県）</label>
-        <input class="form-input" type="text" placeholder="東京都・神奈川県など">
-      </div>
-      <button class="btn-submit">無料で先行登録する →</button>
+      <button class="btn-submit" id="btn-submit">先行掲載希望のご登録</button>
       <p class="form-note">
         登録情報はNaccordsの審査・運営連絡にのみ使用します。<br>
         第三者への提供・営業目的での使用はいたしません。
@@ -459,10 +456,9 @@ footer .copy { font-size: 12px; color: var(--border); }
     <img src="" alt="Naccords" style="height:40px;width:auto;display:block;margin:0 auto;" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
     <span style="display:none;">Naccords</span>
   </div>
-  <p class="tagline">仲人の実力を、正直に見せる場所。</p>
+  <p class="tagline">結婚相談所・仲人検索サイト</p>
   <div class="footer-links">
     <a href="#">プライバシーポリシー</a>
-    <a href="#">特定商取引法</a>
     <a href="#faq">よくある質問</a>
     <a href="mailto:contact@naccords.com">お問い合わせ</a>
   </div>
@@ -488,6 +484,17 @@ document.querySelectorAll('.faq-q').forEach(q => {
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   });
+});
+
+document.getElementById('btn-submit').addEventListener('click', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if (!name || !email) {
+    alert('お名前・相談所名とメールアドレスを入力してください。');
+    return;
+  }
+  alert('ありがとうございます。\n内容を確認のうえ、担当者よりご連絡いたします。');
 });
 </script>
 </body>
