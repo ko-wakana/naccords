@@ -1,1 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naccords（ナコーズ）｜仲人向け先行登録</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
+:root {
+  --primary:#FF9899; --primary-light:#FFB8B8; --primary-dark:#CC6B6C; --primary-bg:#FFF5F5;
+  --beige:#F9F4EE; --beige-dark:#F0E8DC; --text:#2C2A27; --text-muted:#8A8680;
+  --border:#E8D8C0; --white:#FFFFFF;
+}
+
+/* タイポグラフィ基準
+  12px = 注釈・バッジ・コピーライト
+  13px = ラベル・キャプション・フッターリンク
+  14px = カード本文・説明補足
+  15px = 標準本文・リード
+  17px = カード見出し・特徴タイトル
+  22〜30px = セクション見出し
+  weight: 400=本文 500=中強調 700=見出し */
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; overflow-x: hidden; }
+
+/* ナビ */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--beige-dark); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 800; color: var(--primary); text-decoration: none; }
+.nav-cta { background: var(--primary); color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: var(--primary-dark); }
+
+/* Hero */
+.hero { min-height: 100vh; background: var(--beige); display: flex; align-items: center; padding: 100px 40px 80px; position: relative; overflow: hidden; }
+.hero-bg-ph { position: absolute; inset: 0; background: var(--beige-dark); overflow: hidden; }
+.hero-bg-ph::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(138,134,128,0.06) 10px, rgba(138,134,128,0.06) 20px); }
+.hero-bg-ph::after { content: '📷  ここに背景画像が入ります  推奨：1920 × 1080px'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.05em; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(249,244,238,0.92) 0%, rgba(249,244,238,0.75) 60%, rgba(249,244,238,0.4) 100%); z-index: 1; }
+.hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; text-align: left; }
+.hero-badge { display: inline-block; background: var(--primary-bg); color: var(--primary-dark); border: 1.5px solid var(--primary-light); border-radius: 20px; padding: 5px 18px; font-size: 13px; font-weight: 500; margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
+.hero-catch { font-size: clamp(28px, 4.5vw, 48px); font-weight: 700; line-height: 1.5; color: var(--text); margin-bottom: 20px; animation: fadeUp 0.6s 0.1s ease both; }
+.hero-catch em { font-style: normal; color: var(--primary-dark); }
+.hero-sub { font-size: 15px; font-weight: 400; color: var(--text-muted); line-height: 1.9; margin-bottom: 36px; animation: fadeUp 0.6s 0.2s ease both; }
+.hero-cta-group { display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+.btn-hero { background: var(--primary); color: #fff; border: none; border-radius: 10px; padding: 14px 36px; font-size: 15px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.1s; display: inline-block; }
+.btn-hero:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-hero-sub { background: transparent; color: var(--text-muted); border: 1px solid var(--border); border-radius: 10px; padding: 14px 28px; font-size: 15px; font-weight: 400; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s; display: inline-block; }
+.btn-hero-sub:hover { border-color: var(--primary); color: var(--primary-dark); }
+.hero-note { font-size: 12px; color: var(--text-muted); margin-top: 20px; animation: fadeUp 0.6s 0.4s ease both; }
+
+/* 共通 */
+section { padding: 80px 40px; }
+.section-inner { max-width: 900px; margin: 0 auto; }
+.section-tag { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 700; color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+.section-title { font-size: clamp(22px, 3vw, 30px); font-weight: 700; line-height: 1.4; margin-bottom: 14px; }
+.section-lead { font-size: 15px; font-weight: 400; color: var(--text-muted); line-height: 1.9; margin-bottom: 40px; }
+
+/* 画像プレースホルダー */
+.img-ph { background: var(--beige-dark); border: 2px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--text-muted); font-size: 12px; position: relative; overflow: hidden; }
+.img-ph::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(138,134,128,0.07) 8px, rgba(138,134,128,0.07) 16px); pointer-events: none; }
+.img-ph-ico { font-size: 28px; position: relative; z-index: 1; }
+.img-ph-txt { position: relative; z-index: 1; text-align: center; line-height: 1.7; }
+.img-ph-tag { position: relative; z-index: 1; background: rgba(255,255,255,0.85); border: 1px solid var(--primary-light); border-radius: 20px; padding: 2px 12px; font-size: 11px; color: var(--primary-dark); font-weight: 500; }
+
+/* 悩み */
+.pain { background: var(--white); }
+.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.pain-card { background: var(--beige); border-radius: 16px; overflow: hidden; border-left: 4px solid var(--primary-light); }
+.pain-card .img-ph { width: 100%; aspect-ratio: 16/9; border-radius: 0; border: none; border-bottom: 1px dashed var(--border); }
+.pain-card-body { padding: 20px 22px 24px; }
+.pain-card .icon { font-size: 22px; margin-bottom: 10px; }
+.pain-card h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+.pain-card p { font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.8; }
+
+/* About */
+.about { background: var(--beige); }
+.about-box { background: var(--white); border-radius: 20px; padding: 36px 44px; border: 1px solid var(--beige-dark); }
+.about-lead { font-size: 15px; font-weight: 400; line-height: 1.9; margin-bottom: 32px; color: var(--text-muted); }
+.about-lead strong { color: var(--primary-dark); font-weight: 700; }
+.about-flow-heading { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+
+/* ユーザーフロー */
+.user-flow { display: flex; flex-direction: column; }
+.user-flow-step { display: flex; gap: 20px; align-items: flex-start; position: relative; }
+.user-flow-step:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 48px; width: 2px; bottom: -16px; background: linear-gradient(to bottom, var(--primary-light), transparent); }
+.user-flow-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; padding-top: 4px; }
+.user-flow-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,152,153,0.35); }
+.user-flow-body { background: var(--beige); border-radius: 12px; padding: 16px 20px; flex: 1; margin-bottom: 16px; }
+.user-flow-body strong { display: block; font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.user-flow-body p { font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.8; }
+.about-result { margin-top: 8px; background: var(--primary-bg); border-radius: 12px; padding: 18px 22px; border-left: 4px solid var(--primary); font-size: 15px; font-weight: 500; color: var(--primary-dark); line-height: 1.7; }
+.about-result span { font-size: 13px; font-weight: 400; color: var(--text-muted); display: block; margin-top: 6px; }
+
+/* Features */
+.features { background: var(--white); }
+.feature-list { display: flex; flex-direction: column; gap: 36px; }
+.feature-item { display: flex; gap: 28px; align-items: flex-start; }
+.feature-num { font-family: 'Nunito', sans-serif; font-size: 44px; font-weight: 800; color: var(--beige-dark); line-height: 1; min-width: 56px; flex-shrink: 0; }
+.feature-body h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
+.feature-body p { font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.9; }
+.feature-tag { display: inline-block; margin-top: 12px; background: var(--primary-bg); color: var(--primary-dark); border-radius: 6px; padding: 4px 14px; font-size: 12px; font-weight: 500; }
+
+/* Pricing */
+.pricing { background: var(--beige); }
+.pricing-box { background: var(--white); border-radius: 20px; padding: 48px; border: 1px solid var(--beige-dark); text-align: left; }
+.pricing-free { font-family: 'Nunito', sans-serif; font-size: 64px; font-weight: 800; color: var(--primary-dark); line-height: 1; margin-bottom: 8px; }
+.pricing-free span { font-size: 24px; }
+.pricing-sub { font-size: 14px; font-weight: 400; color: var(--text-muted); margin-bottom: 28px; }
+.pricing-divider { border: none; border-top: 1px dashed var(--border); margin: 28px 0; }
+.pricing-fee { font-size: 15px; font-weight: 400; color: var(--text); line-height: 2; }
+.pricing-fee strong { color: var(--primary-dark); font-weight: 700; }
+.pricing-note { margin-top: 24px; font-size: 12px; font-weight: 400; color: var(--text-muted); background: var(--beige); border-radius: 8px; padding: 14px 18px; line-height: 1.9; }
+
+/* Flow */
+.flow { background: var(--white); }
+.flow-steps { display: flex; gap: 0; position: relative; }
+.flow-steps::before { content: ''; position: absolute; top: 28px; left: 56px; right: 56px; height: 2px; background: var(--beige-dark); z-index: 0; }
+.flow-step { flex: 1; text-align: left; position: relative; z-index: 1; padding: 0 16px; }
+.step-circle { width: 56px; height: 56px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 800; margin: 0 auto 16px; }
+.flow-step h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.flow-step p { font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.8; }
+
+/* FAQ */
+.faq { background: var(--beige); }
+.faq-list { display: flex; flex-direction: column; gap: 3px; }
+.faq-item { background: var(--white); border-radius: 4px; overflow: hidden; }
+.faq-item:first-child { border-radius: 12px 12px 4px 4px; }
+.faq-item:last-child { border-radius: 4px 4px 12px 12px; }
+.faq-q { padding: 18px 24px; font-size: 15px; font-weight: 500; color: var(--text); display: flex; align-items: flex-start; gap: 12px; cursor: pointer; user-select: none; line-height: 1.6; }
+.faq-q::before { content: 'Q'; font-family: 'Nunito', sans-serif; font-weight: 800; color: var(--primary); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.faq-a { padding: 0 24px 18px 51px; font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.9; display: none; }
+.faq-item.open .faq-a { display: block; }
+
+/* CTA */
+.cta-section { background: var(--primary-bg); border-top: 1px solid #FFD8D8; }
+.cta-inner { max-width: 600px; margin: 0 auto; text-align: left; }
+.cta-title { font-size: clamp(22px, 3vw, 28px); font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+.cta-sub { font-size: 15px; font-weight: 400; color: var(--text-muted); line-height: 1.9; margin-bottom: 36px; }
+.form-card { background: var(--white); border-radius: 20px; padding: 36px 40px; border: 1px solid #FFD8D8; }
+.form-group { margin-bottom: 18px; }
+.form-label { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+.form-label span { color: var(--primary); margin-left: 4px; font-size: 11px; }
+.form-input { width: 100%; font-family: 'Noto Sans JP', sans-serif; font-size: 15px; border: 1.5px solid var(--border); border-radius: 8px; padding: 11px 16px; background: var(--white); color: var(--text); outline: none; transition: border-color 0.2s; }
+.form-input:focus { border-color: var(--primary); }
+.form-select { width: 100%; font-family: 'Noto Sans JP', sans-serif; font-size: 15px; border: 1.5px solid var(--border); border-radius: 8px; padding: 11px 16px; background: var(--white); color: var(--text); outline: none; appearance: none; cursor: pointer; transition: border-color 0.2s; }
+.form-select:focus { border-color: var(--primary); }
+.btn-submit { width: 100%; background: var(--primary); color: #fff; border: none; border-radius: 10px; padding: 15px; font-size: 15px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; margin-top: 8px; transition: background 0.2s, transform 0.1s; }
+.btn-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.form-note { font-size: 12px; font-weight: 400; color: var(--text-muted); text-align: center; margin-top: 16px; line-height: 1.9; }
+
+/* フッター */
+footer { background: var(--beige-dark); color: var(--text-muted); padding: 48px 40px; text-align: center; border-top: 1px solid var(--border); }
+.footer-logo { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; }
+footer .tagline { font-size: 13px; font-weight: 400; color: var(--text-muted); margin-bottom: 24px; }
+.footer-links { margin-bottom: 24px; }
+.footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 12px; font-size: 13px; font-weight: 400; transition: color 0.2s; }
+.footer-links a:hover { color: var(--primary-dark); }
+footer .copy { font-size: 12px; color: var(--border); }
+
+/* アニメーション */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* レスポンシブ */
+@media (max-width: 680px) {
+  nav { padding: 0 20px; }
+  section { padding: 64px 20px; }
+  .hero { padding: 100px 20px 64px; }
+  .about-box, .pricing-box, .form-card { padding: 24px 20px; }
+  .feature-item { flex-direction: column; gap: 8px; }
+  .feature-num { font-size: 32px; min-width: auto; }
+  .flow-steps { flex-direction: column; gap: 24px; }
+  .flow-steps::before { display: none; }
+  footer { padding: 36px 20px; }
+  .footer-links a { margin: 0 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ナビ -->
+<nav>
+  <!-- ▼ ロゴ画像：差し替え用 推奨 height:32px -->
+  <a href="#" class="nav-logo">
+    <img src="" alt="Naccords" style="height:32px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+    <span style="display:none;font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;color:var(--primary);">Naccords</span>
+  </a>
+  <a href="#register" class="nav-cta">先行登録する</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <!-- ▼ 背景画像エリア：画像実装時は <img> タグに差し替え、object-fit:cover で全面表示 -->
+  <div class="hero-bg-ph"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">🎉 先行登録受付中・掲載料永久無料</div>
+    <h1 class="hero-catch">
+      本当に親身な仲人ほど、<br><em>もっと見つかっていい。</em>
+    </h1>
+    <p class="hero-sub">
+      Naccordsは、仲人の実力をレビューと実績で正直に見せる結婚相談所マッチングプラットフォームです。掲載は完全無料。面談が成立したときだけ、少額の成果報酬をいただきます。
+      掲載は完全無料。面談が成立したときだけ、少額の成果報酬をいただきます。
+    </p>
+    <div class="hero-cta-group">
+      <a href="#register" class="btn-hero">無料で先行登録する</a>
+      <a href="#about" class="btn-hero-sub">サービスを詳しく見る</a>
+    </div>
+    <p class="hero-note">※ 審査後にプロフィールページが公開されます。いつでも退会できます。</p>
+  </div>
+</section>
+
+<!-- 悩みセクション -->
+<section class="pain">
+  <div class="section-inner">
+    <div class="section-tag reveal">Pain</div>
+    <h2 class="section-title reveal">こんな悩み、ありませんか？</h2>
+    <p class="section-lead reveal">集客に悩む仲人さんの声から、Naccordsは生まれました。</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <!-- ▼ 画像：SNSを見ている仲人のイメージ -->
+        <div class="img-ph"><span class="img-ph-ico">📷</span><span class="img-ph-txt">SNSを見ている仲人のイメージ</span><span class="img-ph-tag">推奨：640 × 360px</span></div>
+        <div class="pain-card-body">
+          <div class="icon">📣</div>
+          <h3>SNSだけでは限界を感じる</h3>
+          <p>InstagramやXで発信しても、フォロワーがなかなか増えない。どこで会員候補と出会えるかわからない。</p>
+        </div>
+      </div>
+      <div class="pain-card reveal">
+        <!-- ▼ 画像：費用・コストを気にしているイメージ -->
+        <div class="img-ph"><span class="img-ph-ico">📷</span><span class="img-ph-txt">費用・コストを気にしているイメージ</span><span class="img-ph-tag">推奨：640 × 360px</span></div>
+        <div class="pain-card-body">
+          <div class="icon">💸</div>
+          <h3>集客にお金をかけたくない</h3>
+          <p>面談のたびに高額な手数料がかかる。まだ会員数も少ないのに、固定費が重くのしかかる。</p>
+        </div>
+      </div>
+      <div class="pain-card reveal">
+        <!-- ▼ 画像：成婚実績・ポートフォリオのイメージ -->
+        <div class="img-ph"><span class="img-ph-ico">📷</span><span class="img-ph-txt">成婚実績・ポートフォリオのイメージ</span><span class="img-ph-tag">推奨：640 × 360px</span></div>
+        <div class="pain-card-body">
+          <div class="icon">🔍</div>
+          <h3>実力を見てもらえる場所がない</h3>
+          <p>成婚させた実績も、会員からの感謝の声も、外から見えない。知名度より実力で選ばれたい。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- サービス説明 -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="section-tag reveal">About</div>
+    <h2 class="section-title reveal">Naccordsとは</h2>
+    <p class="about-lead reveal">
+      婚活ユーザーが<strong>仲人を検索・比較・面談予約</strong>できるプラットフォームです。プロフィールと成婚事例を登録するだけで、Naccords経由で面談の申込みが届きます。集客力ではなく、仲人としての<strong>実力で仕事が取れる</strong>設計です。
+    </p>
+    <div class="about-box reveal">
+      <p class="about-flow-heading">婚活ユーザーによる利用の流れ</p>
+      <div class="user-flow">
+        <div class="user-flow-step">
+          <div class="user-flow-left">
+            <div class="user-flow-icon">🔍</div>
+          </div>
+          <div class="user-flow-body">
+            <strong>結婚相談所・仲人を検索する</strong>
+            <p>エリア・料金・サポートスタイルで絞り込み。あなたのプロフィールが自然に目に触れます。</p>
+          </div>
+        </div>
+        <div class="user-flow-step">
+          <div class="user-flow-left">
+            <div class="user-flow-icon">📋</div>
+          </div>
+          <div class="user-flow-body">
+            <strong>サービス内容・料金・レビューで比較する</strong>
+            <p>実績・成婚事例・レビューを見て「この人に相談したい」と感じた仲人を選びます。広告費より、実力が評価される仕組みです。</p>
+          </div>
+        </div>
+        <div class="user-flow-step">
+          <div class="user-flow-left">
+            <div class="user-flow-icon">📅</div>
+          </div>
+          <div class="user-flow-body">
+            <strong>初回面談を予約する</strong>
+            <p>空き枠を選んでそのまま予約。日程調整のやり取りは不要で、確定通知があなたにメールで届きます。</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-result">
+        あなたは空き枠を設定するだけ。集客・日程調整・リマインドはNaccordsが自動で行います。
+        <span>掲載料¥0・現在は面談成果報酬も¥0でご利用いただけます。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 特徴 -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <div class="section-tag reveal">Features</div>
+    <h2 class="section-title reveal">選ばれる3つの理由</h2>
+    <p class="section-lead reveal">集客力ではなく、仲人としての実力で仕事が取れる設計です。</p>
+    <div class="feature-list">
+      <div class="feature-item reveal">
+        <div class="feature-num">01</div>
+        <div class="feature-body">
+          <h3>掲載完全無料。成果が出たときだけ払う。</h3>
+          <p>月額・初期費用はゼロ。費用が発生するのは面談が成立したときだけ、税込3,300円の成果報酬のみです。会員が増えるまでの初期フェーズでも、リスクなく始められます。</p>
+          <span class="feature-tag">面談成立時のみ 税込3,300円</span>
+        </div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-num">02</div>
+        <div class="feature-body">
+          <h3>成婚事例が、最強のポートフォリオになる。</h3>
+          <p>どんな会員をどうサポートして成婚に導いたか——そのストーリーを「成婚事例記事」として掲載できます。実績が積み上がるほど検索で見つかりやすくなり、信頼が高まります。</p>
+          <span class="feature-tag">レビュー・実績が増えるほど露出UP</span>
+        </div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-num">03</div>
+        <div class="feature-body">
+          <h3>面談予約まで、全部オンラインで完結。</h3>
+          <p>スケジュールを一度登録すれば、婚活ユーザーが空き枠を選んで予約するだけ。日程調整のやり取りが不要になり、面談前の事前アンケートも自動で送れます。</p>
+          <span class="feature-tag">24時間予約受付・自動確定</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 料金 -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-tag reveal">Pricing</div>
+    <h2 class="section-title reveal">シンプルな料金体系</h2>
+    <div class="pricing-box reveal">
+      <div class="pricing-free">¥0 <span>/ 月</span></div>
+      <div class="pricing-sub">月額掲載料・固定費・初期費用すべて無料</div>
+      <hr class="pricing-divider">
+      <div class="pricing-fee">
+        面談が成立したときの成果報酬：
+        <span style="text-decoration:line-through;color:var(--text-muted);margin-right:8px;">税込3,300円</span>
+        <strong style="color:var(--primary-dark);font-size:18px;">→ 今なら¥0</strong><br>
+        <span style="font-size:13px;color:var(--text-muted);font-weight:300;">先行登録期間中は成果報酬も完全無料。費用は一切かかりません。</span>
+      </div>
+      <div class="pricing-note">
+        ※ 有料化（成果報酬3,300円/件）の際は事前にご連絡のうえ開始します。<br>
+        ※ 先行登録者には特別割引を予定しています。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 掲載の流れ -->
+<section class="flow" id="flow">
+  <div class="section-inner">
+    <div class="section-tag reveal">How it works</div>
+    <h2 class="section-title reveal">掲載までの流れ</h2>
+    <p class="section-lead reveal">最短30分でプロフィールを公開できます。</p>
+    <div class="flow-steps reveal">
+      <div class="flow-step">
+        <div class="step-circle">1</div>
+        <h3>先行登録</h3>
+        <p>フォームに基本情報を入力して送信。審査は通常1〜3営業日以内。</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-circle">2</div>
+        <h3>プロフィール作成</h3>
+        <p>管理画面から自己紹介・料金・スケジュールを入力。成婚事例も投稿できます。</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-circle">3</div>
+        <h3>公開・予約受付開始</h3>
+        <p>審査通過後にプロフィールが公開され、婚活ユーザーからの面談予約が届きます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-inner">
+    <div class="section-tag reveal">FAQ</div>
+    <h2 class="section-title reveal">よくある質問</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q">本当に無料ですか？隠れた費用はありませんか？</div>
+        <div class="faq-a">はい、月額・初期費用・掲載料は一切かかりません。費用が発生するのは面談が成立したときの成果報酬（税込3,300円）のみです。先行登録期間中は成果報酬も無料でご利用いただけます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">どんな仲人が掲載できますか？</div>
+        <div class="faq-a">IBJ・TMS・JBA・BIUなどの連盟加盟・非加盟を問わず、個人・法人の仲人・結婚相談所が対象です。審査後にプロフィールを公開します。身分証の提出は現時点では任意です（提出すると「認証済みバッジ」が付与されます）。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">既存の集客（SNS・IBJなど）と並行して使えますか？</div>
+        <div class="faq-a">もちろんです。Naccordsは既存の集客活動を置き換えるものではなく、新しい集客チャネルとして追加でご活用いただけます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">いつでも退会できますか？</div>
+        <div class="faq-a">はい、管理画面からいつでも掲載を停止・退会できます。違約金や解約手数料はかかりません。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">婚活ユーザーの個人情報は守られますか？</div>
+        <div class="faq-a">ユーザーはニックネームで登録し、メールアドレスは仲人には開示されません。ユーザーが許可した情報のみが仲人に見える設計です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTAフォーム -->
+<section class="cta-section" id="register">
+  <div class="section-inner cta-inner">
+    <div class="section-tag reveal" style="color:var(--primary-dark);">先行登録</div>
+    <h2 class="cta-title reveal">まず、登録してみてください。費用はかかりません。</h2>
+    <p class="cta-sub reveal">審査後にプロフィール作成のご案内をお送りします。</p>
+    <div class="form-card reveal">
+      <div class="form-group">
+        <label class="form-label">お名前・相談所名 <span>必須</span></label>
+        <input class="form-input" type="text" placeholder="田中 美咲（ハピネス相談所）">
+      </div>
+      <div class="form-group">
+        <label class="form-label">メールアドレス <span>必須</span></label>
+        <input class="form-input" type="email" placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">所属連盟</label>
+        <select class="form-select">
+          <option value="">選択してください</option>
+          <option>IBJ</option>
+          <option>TMS</option>
+          <option>JBA</option>
+          <option>BIU</option>
+          <option>なし（独立系）</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">活動エリア（都道府県）</label>
+        <input class="form-input" type="text" placeholder="東京都・神奈川県など">
+      </div>
+      <button class="btn-submit">無料で先行登録する →</button>
+      <p class="form-note">
+        登録情報はNaccordsの審査・運営連絡にのみ使用します。<br>
+        第三者への提供・営業目的での使用はいたしません。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <!-- ▼ ロゴ画像：差し替え用 推奨 height:40px -->
+  <div class="footer-logo">
+    <img src="" alt="Naccords" style="height:40px;width:auto;display:block;margin:0 auto;" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    <span style="display:none;">Naccords</span>
+  </div>
+  <p class="tagline">仲人の実力を、正直に見せる場所。</p>
+  <div class="footer-links">
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">特定商取引法</a>
+    <a href="#faq">よくある質問</a>
+    <a href="mailto:contact@naccords.com">お問い合わせ</a>
+  </div>
+  <p class="copy">© 2026 Naccords. All rights reserved.</p>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
